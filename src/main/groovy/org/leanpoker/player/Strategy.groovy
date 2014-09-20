@@ -34,50 +34,51 @@ class Strategy {
 	}
 
 	def getDecision() {
-		def decision
-		switch (ourValue - communityValue) {
-			case 0:
-				if (communityValue in [1, 2] && communityHand.cards.size() <= 3) {
-					decision = Decision.CALL
-					break
-				}
-				decision = Decision.FOLD
-				break
-			case 1..2:
-				decision = Decision.MAYBE_CALL
-				break
-			case 3..4:
-				decision = Decision.CALL
-				break
-			case 5..6:
-				decision = Decision.MAYBE_RAISE
-				break
-			case 7..10:
-				decision = Decision.RAISE
-				break
-		}
-		switch (decision) {
-			case Decision.FOLD:
-				return 0
-			case Decision.MAYBE_CALL:
-				if (helper.currentBuyIn > helper.us.stack * 0.75 && raiseCount > 1) {
-					return 0
-				}
-			case Decision.CALL:
-				raiseCount++
-				return helper.minimumBet
-			case Decision.MAYBE_RAISE:
-				if (communityValue < 3 && playerBets.count { it > 0.75 }) {
-					return helper.minimumBet
-				}
-			case Decision.RAISE:
-				if (raiseCount < 2) {
-					raiseCount++
-					return ourValue * helper.minimumRaise
-				}
-				return helper.minimumBet
-		}
-		0
+		Math.random() > 0.5 ? helper.us.stack : (Math.random() > 0.5 ? helper.minimumBet : 0)
+//		def decision
+//		switch (ourValue - communityValue) {
+//			case 0:
+//				if (communityValue in [1, 2] && communityHand.cards.size() <= 3) {
+//					decision = Decision.CALL
+//					break
+//				}
+//				decision = Decision.FOLD
+//				break
+//			case 1..2:
+//				decision = Decision.MAYBE_CALL
+//				break
+//			case 3..4:
+//				decision = Decision.CALL
+//				break
+//			case 5..6:
+//				decision = Decision.MAYBE_RAISE
+//				break
+//			case 7..10:
+//				decision = Decision.RAISE
+//				break
+//		}
+//		switch (decision) {
+//			case Decision.FOLD:
+//				return 0
+//			case Decision.MAYBE_CALL:
+//				if (helper.currentBuyIn > helper.us.stack * 0.75 && raiseCount > 1) {
+//					return 0
+//				}
+//			case Decision.CALL:
+//				raiseCount++
+//				return helper.minimumBet
+//			case Decision.MAYBE_RAISE:
+//				if (communityValue < 3 && playerBets.count { it > 0.75 }) {
+//					return helper.minimumBet
+//				}
+//			case Decision.RAISE:
+//				if (raiseCount < 2) {
+//					raiseCount++
+//					return ourValue * helper.minimumRaise
+//				}
+//				return helper.minimumBet
+//		}
+//		0
 	}
 
 	def getHandValue(Hand hand) {
