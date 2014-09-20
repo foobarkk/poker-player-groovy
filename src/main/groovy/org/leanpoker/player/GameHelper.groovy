@@ -15,4 +15,12 @@ class GameHelper {
 	def getCards() {
 		us.hole_cards + gameState.community_cards
 	}
+
+	def getCommunityCards() {
+		gameState.community_cards
+	}
+
+	def getMinimumRaise() {
+		gameState.minimum_raise
+	}
 }

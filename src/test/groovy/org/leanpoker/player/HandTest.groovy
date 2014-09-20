@@ -8,7 +8,7 @@ class HandTest extends Specification {
 	def createHandFromFile(def fileName) {
 		def gameState = new JsonSlurper().parseText(new File(fileName).text)
 		def hand = new Hand(cards: new GameHelper(gameState: gameState).cards)
-		hand.calculateValue()
+		hand.calculateRanking()
 		hand
 	}
 

@@ -11,7 +11,7 @@ class Hand {
 	def hasDrills = false
 	def hasFourOfKind = false
 
-	void calculateValue() {
+	void calculateRanking() {
 		orderByRank = cards.clone().sort { it.rank }
 		orderBySuit = cards.clone().sort { it.suit }
 
@@ -39,6 +39,16 @@ class Hand {
 			}
 			prevCard = card
 		}
+	}
+
+	def getHandValue() {
+		calculateRanking()
+		def handValue = 1
+		if (this.hasOnePair) handValue = 2
+		if (this.hasTwoPairs) handValue = 3
+		if (this.hasDrills) handValue = 4
+		if (this.hasFourOfKind) handValue = 5
+		handValue
 	}
 
 }
