@@ -11,4 +11,8 @@ class GameHelper {
 	def getMinimumBet() {
 		gameState.current_buy_in - us.bet
 	}
+
+	def getCards() {
+		us.hole_cards + gameState.community_cards
+	}
 }
