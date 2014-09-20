@@ -52,7 +52,7 @@ class NewStrategy {
 				decision = Decision.RAISE
 				break
 		}
-		if (helper.us.bet == 0 && helper.minimumBet > (helper.us.stack / 2) && ourValue < 7) {
+		if (helper.communityCards.size() == 0 && helper.minimumBet > (helper.us.stack / 2) && ourValue < 7) {
 			return 0
 		}
 		switch (decision) {
