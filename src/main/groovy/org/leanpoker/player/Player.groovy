@@ -8,7 +8,7 @@ class Player {
 		def helper = new GameHelper(gameState: gameState)
 		def random = Math.random()
 		if (random < 0.1) return 0
-		if (random < 0.6) return helper.minimumBet
+		if (random < 0.6) return Math.min(helper.minimumBet + 100, helper.us.stack)
 		helper.us.stack
     }
 
