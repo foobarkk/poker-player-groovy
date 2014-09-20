@@ -48,7 +48,7 @@ class NewStrategy {
 			case 5..6:
 				decision = Decision.MAYBE_RAISE
 				break
-			case 7..10:
+			case 7..100:
 				decision = Decision.RAISE
 				break
 		}
