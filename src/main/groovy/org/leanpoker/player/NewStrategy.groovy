@@ -87,9 +87,9 @@ class NewStrategy {
 		if (hand.hasFourOfKind) handValue = 34
 		if (hand.hasFullHouse) handValue = 21
 		if (hand.hasFlush) handValue = 13
-		if (hand.hasStraight) handValue = 8
-		if (hand.hasDrills) handValue = 5
-		if (hand.hasTwoPairs) handValue = 3
+		if (hand.hasStraight) handValue = 10
+		if (hand.hasDrills) handValue = 7
+		if (hand.hasTwoPairs) handValue = 5
 		if (hand.hasOnePair) handValue = 2
 		handValue
 	}

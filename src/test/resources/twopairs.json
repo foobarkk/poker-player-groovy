@@ -41,7 +41,7 @@
 					"suit": "hearts"
 				},
 				{
-					"rank": "6",
+					"rank": "8",
 					"suit": "spades"
 				}
 			]
@@ -57,11 +57,11 @@
 	],
 	"community_cards": [
 		{
-			"rank": "2",
+			"rank": "6",
 			"suit": "hearts"
 		},
 		{
-			"rank": "2",
+			"rank": "8",
 			"suit": "spades"
 		}
 	]

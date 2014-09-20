@@ -5,10 +5,10 @@ class Player {
     static String VERSION
 
 	static {
-		if (Math.random() >= 0.2) {
+		if (Math.random() >= 0.5) {
 			VERSION = 'groovy-old-strategy'
 		} else {
-			VERSION = 'groovy-new-strategy-6'
+			VERSION = 'groovy-new-strategy-7'
 		}
 	}
 
