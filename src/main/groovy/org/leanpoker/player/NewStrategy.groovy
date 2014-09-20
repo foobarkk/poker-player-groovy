@@ -35,12 +35,8 @@ class NewStrategy {
 
 	def getDecision() {
 		def decision
-		switch (ourValue - communityValue) {
+		switch (ourValue) {
 			case 0:
-				if (communityValue in [1, 2] && communityHand.cards.size() <= 3) {
-					decision = Decision.CALL
-					break
-				}
 				decision = Decision.FOLD
 				break
 			case 1..2:

@@ -8,7 +8,7 @@ class Player {
 		if (Math.random() >= 0.5) {
 			VERSION = 'groovy-old-strategy'
 		} else {
-			VERSION = 'groovy-new-strategy-3'
+			VERSION = 'groovy-new-strategy-5'
 		}
 	}
 
