@@ -13,15 +13,18 @@ class Player {
 	}
 
 	static int betRequest(def gameState) {
+		try {
+			def helper = new GameHelper(gameState: gameState)
 
-		def helper = new GameHelper(gameState: gameState)
-
-		if (VERSION == 'groovy-old-strategy') {
-			def strategy = new Strategy(helper)
-			return strategy.decision
-		} else {
-			def strategy = new NewStrategy(helper)
-			return strategy.decision
+			if (VERSION == 'groovy-old-strategy') {
+				def strategy = new Strategy(helper)
+				return strategy.decision
+			} else {
+				def strategy = new NewStrategy(helper)
+				return strategy.decision
+			}
+		} catch (Exception e) {
+			return 0
 		}
 	}
 

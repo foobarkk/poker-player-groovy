@@ -77,6 +77,7 @@ class Strategy {
 				}
 				return helper.minimumBet
 		}
+		0
 	}
 
 }
