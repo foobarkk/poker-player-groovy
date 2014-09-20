@@ -12,6 +12,9 @@ class Strategy {
 	private ourValue
 	private playerBets = []
 
+	static int raiseCount = 0
+	static int communityCardCount = 0
+
 	Strategy(GameHelper helper) {
 		this.helper = helper
 		communityHand = new Hand(cards: helper.communityCards)
@@ -24,6 +27,10 @@ class Strategy {
 				playerBets << ((double) it.bet / (double) (it.bet + it.stack))
 			}
 		}
+		if (helper.communityCards.size() != communityCardCount) {
+			raiseCount = 0
+		}
+		communityCardCount = helper.communityCards.size()
 	}
 
 	def getDecision() {
@@ -53,17 +60,22 @@ class Strategy {
 			case Decision.FOLD:
 				return 0
 			case Decision.MAYBE_CALL:
-				if (helper.currentBuyIn > helper.us.stack * 0.75) {
+				if (helper.currentBuyIn > helper.us.stack * 0.75 && raiseCount > 1) {
 					return 0
 				}
 			case Decision.CALL:
+				raiseCount++
 				return helper.minimumBet
 			case Decision.MAYBE_RAISE:
 				if (communityValue < 3 && playerBets.count { it > 0.75 }) {
 					return helper.minimumBet
 				}
 			case Decision.RAISE:
-				return ourValue * helper.minimumRaise
+				if (raiseCount < 2) {
+					raiseCount++
+					return ourValue * helper.minimumRaise
+				}
+				return helper.minimumBet
 		}
 	}
 
