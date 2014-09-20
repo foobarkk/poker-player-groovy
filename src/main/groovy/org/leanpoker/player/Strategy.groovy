@@ -18,9 +18,9 @@ class Strategy {
 	Strategy(GameHelper helper) {
 		this.helper = helper
 		communityHand = new Hand(cards: helper.communityCards)
-		communityValue = this.communityHand.handValue
+		communityValue = getHandValue(this.communityHand)
 		ourHand = new Hand(cards: helper.cards)
-		ourValue = this.ourHand.handValue
+		ourValue = getHandValue(this.ourHand)
 		helper.gameState.players.findAll { it.version != Player.VERSION }.each {
 			// Kati védelem
 			if (it.bet + it.stack > 0) {
@@ -78,6 +78,21 @@ class Strategy {
 				return helper.minimumBet
 		}
 		0
+	}
+
+	def getHandValue(Hand hand) {
+		hand.calculateRanking()
+		def handValue = 1
+		if (hand.hasRoyalFlush) handValue = 10
+		if (hand.hasStraightFlush) handValue = 9
+		if (hand.hasFourOfKind) handValue = 8
+		if (hand.hasFullHouse) handValue = 7
+		if (hand.hasFlush) handValue = 6
+		if (hand.hasStraight) handValue = 5
+		if (hand.hasDrills) handValue = 4
+		if (hand.hasTwoPairs) handValue = 3
+		if (hand.hasOnePair) handValue = 2
+		handValue
 	}
 
 }

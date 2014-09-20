@@ -62,19 +62,4 @@ class Hand {
 		hasRoyalFlush = hasStraightFlush && (rankOrder.last() == straightEndRank)
 	}
 
-	def getHandValue() {
-		calculateRanking()
-		def handValue = 1
-		if (this.hasRoyalFlush) handValue = 10
-		if (this.hasStraightFlush) handValue = 9
-		if (this.hasFourOfKind) handValue = 8
-		if (this.hasFullHouse) handValue = 7
-		if (this.hasFlush) handValue = 6
-		if (this.hasStraight) handValue = 5
-		if (this.hasDrills) handValue = 4
-		if (this.hasTwoPairs) handValue = 3
-		if (this.hasOnePair) handValue = 2
-		handValue
-	}
-
 }
