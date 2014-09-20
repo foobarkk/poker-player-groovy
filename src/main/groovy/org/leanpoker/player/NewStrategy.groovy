@@ -72,7 +72,7 @@ class NewStrategy {
 			case Decision.RAISE:
 				if (raiseCount < 2) {
 					raiseCount++
-					return ourValue * 10 + helper.minimumRaise
+					return ourValue * (20 - helper.gameState.players.size()) + helper.minimumRaise
 				}
 				return helper.minimumBet
 		}
