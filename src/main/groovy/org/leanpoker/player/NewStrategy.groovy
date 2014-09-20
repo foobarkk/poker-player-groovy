@@ -56,6 +56,9 @@ class NewStrategy {
 				decision = Decision.RAISE
 				break
 		}
+		if (helper.us.bet == 0 && helper.minimumBet > (helper.us.stack / 2) && ourValue < 7) {
+			return 0
+		}
 		switch (decision) {
 			case Decision.FOLD:
 				return 0
