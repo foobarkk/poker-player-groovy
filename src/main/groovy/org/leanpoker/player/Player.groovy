@@ -5,7 +5,7 @@ class Player {
     static String VERSION
 
 	static {
-		if (Math.random() >= 0.75) {
+		if (Math.random() >= 1.1) {
 			VERSION = 'groovy-old-strategy'
 		} else {
 			VERSION = 'groovy-new-strategy-8'
