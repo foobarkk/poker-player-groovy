@@ -23,4 +23,8 @@ class GameHelper {
 	def getMinimumRaise() {
 		gameState.minimum_raise
 	}
+
+	def getCurrentBuyIn() {
+		gameState.current_buy_in
+	}
 }

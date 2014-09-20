@@ -40,6 +40,9 @@ class Strategy {
 			case Decision.FOLD:
 				return 0
 			case Decision.CALL:
+				if (helper.currentBuyIn > helper.us.stack * 0.75) {
+					return 0
+				}
 				return helper.minimumBet
 			case Decision.RAISE:
 				return ourValue * helper.minimumRaise
