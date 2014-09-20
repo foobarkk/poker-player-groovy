@@ -3,25 +3,25 @@ package org.leanpoker.player
 class Hand {
 
 	def cards = []
-	def orderBySuit = []
-	def orderByRank = []
 
 	def hasOnePair = false
 	def hasTwoPairs = false
 	def hasDrills = false
+	def hasFullHouse = false
 	def hasFourOfKind = false
+	def hasFlush = false
 
 	void calculateRanking() {
-		orderByRank = cards.clone().sort { it.rank }
-		orderBySuit = cards.clone().sort { it.suit }
+		def orderByRank = cards.clone().sort { it.rank }
+		def countBySuit = [:]
 
 		def prevCard
-		def count = 1
+		def rankCount = 1
 		orderByRank.each { card ->
 			if (prevCard) {
 				if (prevCard.rank == card.rank) {
-					count++
-					switch (count) {
+					rankCount++
+					switch (rankCount) {
 						case 2:
 							hasTwoPairs = hasOnePair
 							hasOnePair = true
@@ -34,20 +34,25 @@ class Hand {
 							break
 					}
 				} else {
-					count = 1
+					rankCount = 1
 				}
 			}
+			countBySuit[card.suit] = 1 + (countBySuit[card.suit] ?: 0)
 			prevCard = card
 		}
+		hasFullHouse = hasOnePair && hasDrills && !hasFourOfKind
+		hasFlush = (countBySuit.find { it.value == 5 } != null)
 	}
 
 	def getHandValue() {
 		calculateRanking()
 		def handValue = 1
-		if (this.hasOnePair) handValue = 2
-		if (this.hasTwoPairs) handValue = 3
+		if (this.hasFourOfKind) handValue = 7
+		if (this.hasFullHouse) handValue = 6
+		if (this.hasFlush) handValue = 5
 		if (this.hasDrills) handValue = 4
-		if (this.hasFourOfKind) handValue = 5
+		if (this.hasTwoPairs) handValue = 3
+		if (this.hasOnePair) handValue = 2
 		handValue
 	}
 

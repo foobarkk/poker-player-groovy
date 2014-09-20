@@ -66,4 +66,12 @@ class HandTest extends Specification {
 		!hand.hasTwoPairs
 		hand.hasFourOfKind
 	}
+
+	def "test flush"() {
+		given:
+		def hand = createHandFromFile('src/test/resources/flush.json')
+
+		expect:
+		hand.hasFlush
+	}
 }
