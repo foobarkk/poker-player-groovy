@@ -5,7 +5,7 @@ class GameHelper {
 	def gameState
 
 	def getUs() {
-		gameState.players.find { it.version == Player.VERSION }
+		gameState.players.find { it.version ==~ /groovy.*/ }
 	}
 
 	def getMinimumBet() {
