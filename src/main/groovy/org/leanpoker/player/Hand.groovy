@@ -17,6 +17,8 @@ class Hand {
 	def hasStraightFlush = false
 	def hasRoyalFlush = false
 
+	def highCardCount = 0
+
 	void calculateRanking() {
 		def orderByRank = cards.clone().sort { rankOrder.indexOf(it.rank) }
 		def countBySuit = [:]
@@ -49,6 +51,7 @@ class Hand {
 					rankCount = 1
 				}
 			}
+			if (rankOrder.indexOf(card.rank) >= 8) highCardCount++
 			countBySuit[card.suit] = 1 + (countBySuit[card.suit] ?: 0)
 			prevCard = card
 		}
