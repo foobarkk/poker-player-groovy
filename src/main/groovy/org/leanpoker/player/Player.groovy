@@ -2,17 +2,30 @@ package org.leanpoker.player
 
 class Player {
 
-    static final String VERSION = 'groovy-licious';
+    static String VERSION
 
-    static int betRequest(def gameState) {
+	static {
+		if (Math.random() >= 0.5) {
+			VERSION = 'random-algo'
+		} else {
+			VERSION = 'super-secret-algo'
+		}
+	}
+
+	static int betRequest(def gameState) {
+
 		def helper = new GameHelper(gameState: gameState)
-		def strategy = new Strategy(helper)
-		strategy.decision
-//		def random = Math.random()
-//		if (random < 0.1) return 0
-//		if (random < 0.6) return Math.min(helper.minimumBet + 100, helper.us.stack)
-//		helper.us.stack
-    }
+
+		if (VERSION == 'random') {
+			def random = Math.random()
+			if (random < 0.1) return 0
+			if (random < 0.6) return Math.min(helper.minimumBet + 100, helper.us.stack)
+			return helper.us.stack
+		} else {
+			def strategy = new Strategy(helper)
+			return strategy.decision
+		}
+	}
 
     static void showdown(def gameState) {
     }
