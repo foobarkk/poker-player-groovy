@@ -8,7 +8,7 @@ class Player {
 		if (Math.random() >= 0.5) {
 			VERSION = 'groovy-random-algo'
 		} else {
-			VERSION = 'groovy-super-secret-algo'
+			VERSION = 'groovy-super-secret-algo-2'
 		}
 	}
 

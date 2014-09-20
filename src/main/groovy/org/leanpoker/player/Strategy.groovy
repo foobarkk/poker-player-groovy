@@ -29,7 +29,10 @@ class Strategy {
 				}
 				decision = Decision.FOLD
 				break
-			case 1..10:
+			case 1..3:
+				decision = Decision.CALL
+				break
+			case 4..10:
 				decision = Decision.RAISE
 				break
 		}

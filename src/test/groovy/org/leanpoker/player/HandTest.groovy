@@ -74,4 +74,12 @@ class HandTest extends Specification {
 		expect:
 		hand.hasFlush
 	}
+
+	def "test royal flush"() {
+		given:
+		def hand = createHandFromFile('src/test/resources/royalflush.json')
+
+		expect:
+		hand.hasRoyalFlush
+	}
 }
