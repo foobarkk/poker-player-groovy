@@ -60,7 +60,7 @@ class NewStrategy {
 			case Decision.FOLD:
 				return 0
 			case Decision.MAYBE_CALL:
-				if (helper.currentBuyIn > helper.us.stack * 0.75 && raiseCount > 1) {
+				if (helper.currentBuyIn > helper.us.stack * 0.75 || raiseCount > 1) {
 					return 0
 				}
 			case Decision.CALL:
